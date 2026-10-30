@@ -413,8 +413,8 @@
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ราคา (฿)</label>
-                                        <input type="number" id="add-prod-price" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none focus:border-cherie-accent">
+                                        <label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ราคาตามชั่วโมง (฿)</label>
+                                        <div class="grid grid-cols-2 gap-2"><label class="text-[11px] text-cherie-gray">1 ชม.<input type="number" min="0" step="0.01" id="add-prod-price-1" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">3 ชม.<input type="number" min="0" step="0.01" id="add-prod-price-3" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">8 ชม.<input type="number" min="0" step="0.01" id="add-prod-price-8" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">24 ชม.<input type="number" min="0" step="0.01" id="add-prod-price-24" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label></div>
                                     </div>
                                     <div>
                                         <label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ป้ายพิเศษ (Tag)</label>
@@ -523,6 +523,7 @@
                         <span class="text-[10px] bg-cherie-pink text-cherie-accent px-2.5 py-0.5 rounded-full font-bold border border-cherie-pastel shadow-sm" id="pd-modal-category"></span>
                         <span id="pd-modal-status"></span>
                     </div>
+                    <div id="pd-modal-prices" class="mt-3 space-y-2"></div>
                     <p class="text-[13px] text-cherie-gray mt-3 whitespace-pre-wrap leading-relaxed font-medium" id="pd-modal-desc"></p>
                 </div>
                 <div class="mt-3 pt-3 border-t border-cherie-pastel/60 space-y-2">
@@ -540,7 +541,7 @@
                     <input type="hidden" id="edit-prod-id">
                     <div><label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ชื่อสินค้า / ชื่อรหัส</label><input type="text" id="edit-prod-name" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></div>
                     <div class="grid grid-cols-2 gap-3">
-                        <div><label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ราคา (฿)</label><input type="number" id="edit-prod-price" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></div>
+                        <div><label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ราคาตามชั่วโมง (฿)</label><div class="grid grid-cols-2 gap-2"><label class="text-[11px] text-cherie-gray">1 ชม.<input type="number" min="0" step="0.01" id="edit-prod-price-1" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">3 ชม.<input type="number" min="0" step="0.01" id="edit-prod-price-3" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">8 ชม.<input type="number" min="0" step="0.01" id="edit-prod-price-8" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label><label class="text-[11px] text-cherie-gray">24 ชม.<input type="number" min="0" step="0.01" id="edit-prod-price-24" placeholder="ไม่ระบุ" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></label></div></div>
                         <div><label class="block text-[11px] font-bold mb-1 ml-1 text-cherie-gray">ป้ายพิเศษ (Tag)</label><input type="text" id="edit-prod-tag" class="w-full bg-cherie-appBg border border-cherie-pastel/80 rounded-[14px] p-3 text-[13px] font-medium focus:outline-none"></div>
                     </div>
                     <div>
@@ -609,7 +610,7 @@
         <div id="toast-notif" class="absolute top-16 left-1/2 -translate-x-1/2 bg-cherie-dark text-white font-bold text-[12px] px-5 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.2)] flex items-center gap-2 pointer-events-none opacity-0 scale-90 transition-all duration-300 z-[99] whitespace-nowrap">
             <span id="toast-emoji" class="text-base">🩵</span> <span id="toast-text">...</span>
         </div>
-        <audio preload="none" id="bg-music" src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" loop></audio>
+        <audio preload="none" id="bg-music" src="assets/background-music.mp3" loop></audio>
     </div>
 
     <!-- ================= SUPABASE & APPLICATION LOGIC ================= -->
@@ -626,7 +627,7 @@
             tagline: "ยินดีต้อนรับสู่ร้าน Porplai 🩵",
             welcome_message: "🩵 ยินดีต้อนรับสู่ร้าน Porplai ค่ะ ✨ เลือกชมสินค้าและอ่านกฎการเล่นได้เลยน้า 🫧",
             logo_url: "https://i.postimg.cc/8cJB1z5x/mi-m-ch-x-46-20261029031138.png",
-            bgm_url: "https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3",
+            bgm_url: "assets/background-music.mp3",
             facebook_url: "https://www.facebook.com/share/1HvzRq5GfM/",
             line_url: "https://line.me/ti/p/DeRBaYk8fF",
             instagram_url: "https://www.instagram.com/nattana_27?cplk=aXUxMHlyMjZsbDJh",
@@ -936,8 +937,8 @@
 
             // เพลงพื้นหลัง
             const audioElem = document.getElementById('bg-music');
-            const newBgmUrl = i.bgm_url || DEFAULT_INFO.bgm_url;
-            if (audioElem.src !== newBgmUrl) {
+            const newBgmUrl = DEFAULT_INFO.bgm_url;
+            if (audioElem.src !== new URL(newBgmUrl, document.baseURI).href) {
                 audioElem.src = newBgmUrl;
                 if (bgmPlay) audioElem.play().catch(() => {});
             }
@@ -1074,13 +1075,33 @@
                                 <p class="text-[10px] font-medium text-cherie-gray line-clamp-2 mt-0.5">${p.description || ''}</p>
                             </div>
                             <div class="flex justify-between items-center mt-2.5 pt-1.5 border-t border-cherie-pastel/50">
-                                <span class="text-cherie-accent font-black text-[15px]">฿${p.price}</span>
+                                <span class="text-cherie-accent font-black text-[15px]">เริ่มต้น ฿${startingPrice(p)}</span>
                                 <span class="text-[10px] font-bold ${available ? 'text-emerald-600 bg-emerald-50 border border-emerald-200' : 'text-rose-600 bg-rose-50 border border-rose-200'} px-2 py-0.5 rounded-full">${available ? 'รหัสว่าง' : 'ไม่ว่าง'}</span>
                             </div>
                         </div>
                     </div>`;
             });
         };
+        const RENTAL_HOURS = [1, 3, 8, 24];
+        function rentalPrices(p) {
+            return RENTAL_HOURS.filter(h => p.price_options?.[h] !== undefined && p.price_options[h] !== null && p.price_options[h] !== '' && Number.isFinite(Number(p.price_options[h])) && Number(p.price_options[h]) >= 0).map(h => [h, Number(p.price_options[h])]);
+        }
+        function startingPrice(p) {
+            const values = rentalPrices(p).map(([, price]) => price);
+            return values.length ? Math.min(...values) : p.price;
+        }
+        function readRentalPrices(mode) {
+            const options = {};
+            for (const h of RENTAL_HOURS) {
+                const raw = document.getElementById(`${mode}-prod-price-${h}`).value.trim();
+                if (!raw) continue;
+                const value = Number(raw);
+                if (!Number.isFinite(value) || value < 0) return null;
+                options[h] = value;
+            }
+            return Object.keys(options).length ? options : null;
+        }
+
         window.handleSearch = () => window.renderCategoriesList();
         window.filterCat = (c) => { window.selectedCategory = c; window.renderCategoriesList(); };
 
@@ -1091,7 +1112,8 @@
 
             const available = isProductAvailable(p);
             document.getElementById('pd-modal-name').textContent = p.name;
-            document.getElementById('pd-modal-price').textContent = '฿' + p.price;
+            document.getElementById('pd-modal-price').textContent = 'เริ่มต้น ฿' + startingPrice(p);
+            document.getElementById('pd-modal-prices').innerHTML = rentalPrices(p).map(([h, price]) => `<div class="flex justify-between bg-cherie-appBg rounded-[14px] px-3 py-2 text-[13px] font-bold"><span>${h} ชม.</span><span class="text-cherie-accent">฿${price}</span></div>`).join('');
             document.getElementById('pd-modal-category').textContent = p.category || 'ทั่วไป';
             document.getElementById('pd-modal-desc').textContent = p.description || 'สอบถามรายละเอียดเพิ่มเติมกับทางร้านได้เลยนะคะ';
 
@@ -1286,21 +1308,30 @@
         };
 
         // ระบบเสียงเพลงพื้นหลัง
-        window.toggleBGM = () => {
+        window.toggleBGM = async () => {
             const m = document.getElementById('bg-music');
             const i = document.getElementById('bgm-icon');
-            if (bgmPlay) {
+            if (!m.paused) {
                 m.pause();
                 i.className = "fa-solid fa-volume-xmark text-gray-400";
                 bgmPlay = false;
                 window.userPausedBGM = true;
             } else {
-                m.play().catch(() => {});
-                i.className = "fa-solid fa-music text-cherie-accent animate-pulse";
-                bgmPlay = true;
-                window.userPausedBGM = false;
+                try {
+                    await m.play();
+                    i.className = "fa-solid fa-music text-cherie-accent animate-pulse";
+                    bgmPlay = true;
+                    window.userPausedBGM = false;
+                } catch (err) {
+                    bgmPlay = false;
+                    window.showToast("🎵", "เล่นเพลงไม่สำเร็จ กรุณากดเปิดเพลงอีกครั้งค่ะ");
+                }
             }
         };
+        document.addEventListener('click', (event) => {
+            if (event.target.closest('[onclick="toggleBGM()"]') || window.userPausedBGM) return;
+            if (document.getElementById('bg-music').paused) window.toggleBGM();
+        }, { once: true });
 
         window.showToast = (e, m) => {
             const t = document.getElementById('toast-notif');
@@ -1522,7 +1553,7 @@
                                 </div>
                                 <div class="min-w-0 pr-2">
                                     <p class="font-extrabold text-cherie-dark truncate">${p.name}</p>
-                                    <p class="text-[10px] text-cherie-accent font-bold">฿${p.price} • ${p.category}</p>
+                                    <p class="text-[10px] text-cherie-accent font-bold">เริ่มต้น ฿${startingPrice(p)} • ${p.category}</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-1.5 flex-shrink-0">
@@ -1756,7 +1787,8 @@
         // จัดการสินค้า (พร้อมตัวเลือกติ๊ก รหัสว่าง / ไม่ว่าง)
         window.addProductToCloud = async () => {
             const name = document.getElementById('add-prod-name').value.trim();
-            const price = parseFloat(document.getElementById('add-prod-price').value);
+            const price_options = readRentalPrices('add');
+            const price = price_options ? Math.min(...Object.values(price_options)) : NaN;
             if (!name || isNaN(price)) return window.showToast("⚠️", "กรุณากรอกชื่อสินค้าและราคาค่ะ");
 
             const btn = document.getElementById('btn-add-prod');
@@ -1776,6 +1808,7 @@
                     id: 'prod_' + Date.now(),
                     name,
                     price,
+                    price_options,
                     description: document.getElementById('add-prod-desc').value.trim(),
                     category: document.getElementById('add-prod-category').value || 'กลุ่มตูน',
                     image_url: imageUrl,
@@ -1785,7 +1818,7 @@
                 if (error) throw error;
 
                 document.getElementById('add-prod-name').value = '';
-                document.getElementById('add-prod-price').value = '';
+                RENTAL_HOURS.forEach(h => document.getElementById('add-prod-price-' + h).value = '');
                 document.getElementById('add-prod-desc').value = '';
                 document.getElementById('add-prod-tag').value = '';
                 document.getElementById('add-prod-image-url').value = '';
@@ -1824,7 +1857,7 @@
 
             document.getElementById('edit-prod-id').value = p.id;
             document.getElementById('edit-prod-name').value = p.name || '';
-            document.getElementById('edit-prod-price').value = p.price ?? '';
+            RENTAL_HOURS.forEach(h => document.getElementById('edit-prod-price-' + h).value = p.price_options?.[h] ?? (h === 1 && !rentalPrices(p).length ? (p.price ?? '') : ''));
             document.getElementById('edit-prod-tag').value = p.tag || '';
             document.getElementById('edit-prod-desc').value = p.description || '';
             document.getElementById('edit-prod-image-url').value = p.image_url || '';
@@ -1849,7 +1882,8 @@
         window.saveEditProductToCloud = async () => {
             const pid = document.getElementById('edit-prod-id').value;
             const name = document.getElementById('edit-prod-name').value.trim();
-            const price = parseFloat(document.getElementById('edit-prod-price').value);
+            const price_options = readRentalPrices('edit');
+            const price = price_options ? Math.min(...Object.values(price_options)) : NaN;
             if (!pid || !name || isNaN(price)) return window.showToast("⚠️", "กรอกชื่อและราคาให้ครบค่ะ");
 
             const btn = document.getElementById('btn-save-edit-prod');
@@ -1868,6 +1902,7 @@
                 const { error } = await sb.from('products').update({
                     name,
                     price,
+                    price_options,
                     description: document.getElementById('edit-prod-desc').value.trim(),
                     category: document.getElementById('edit-prod-category').value,
                     image_url: imageUrl,
